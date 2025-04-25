@@ -51,7 +51,7 @@ body {
     margin-top: 30px;
 }
 
-.post {
+..feed-styled .post {
     background-color: white;
     padding: 15px;
     margin-bottom: 15px;

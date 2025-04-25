@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html>
 <head>
     <title>Banterbird</title>
@@ -10,26 +10,27 @@
     <div>
         Logged in as: <strong id="username">admin</strong>
     </div>
-    <div>
+
+    <!-- First tweet box (connected to JS logic) -->
+    <div id="tweet-box">
         <h3>New Post</h3>
         <textarea id="postInput" placeholder="What's on your mind?"></textarea><br>
         <button onclick="submitPost()">Tweet</button>
     </div>
+
     <hr>
     <h3>Feed</h3>
-    <div id="feed"></div>
 
+    <!-- Changed ID to avoid duplicate and allow styling -->
+    <div id="feed" class="feed-styled"></div>
+
+    <!-- This is your mockup example section -->
     <div class="container">
-        <div id="tweet-box">
-            <textarea placeholder="What's happening?"></textarea>
-            <button>Tweet</button>
-        </div>
-        <div id="feed">
+        <div class="feed-styled">
             <div class="post">This is a post!</div>
             <!-- more posts -->
         </div>
     </div>
-    
 
     <template id="post-template">
         <div class="post">
