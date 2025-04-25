@@ -7,16 +7,45 @@ function renderPost(post) {
     document.getElementById("feed").appendChild(template);
 }
 
-function submitPost() {
-    const message = document.getElementById("postInput").value;
-    console.log("Would post:", message);
-    alert("Tweet submitted (not really yet)");
+
+function renderPost(post, isNew = false) {
+  const template = document
+    .getElementById("post-template")
+    .content.cloneNode(true);
+  template.querySelector(".username").innerText = post.username;
+  template.querySelector(".message").innerText = post.message;
+
+  if (isNew) {
+    document.getElementById("feed").prepend(template);
+  } else {
+    document.getElementById("feed").appendChild(template);
+  }
 }
 
-window.onload = () => {
-    const hardcodedPost = {
-        username: "admin",
-        message: "Welcome to Banterbird! This post is hardcoded.",
-    };
-    renderPost(hardcodedPost);
+
+async function submitPost() {
+  const message = document.getElementById("postInput").value;
+  try {
+    const response = await fetch("/api/posts", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, message }),
+    });
+    if (response.ok) {
+      renderPost({ username, message }, true); // Pass `isNew = true`
+      document.getElementById("postInput").value = ""; // Clear the input box
+    }
+  } catch (error) {
+    console.error("Error submitting post:", error);
+  }
+}
+
+window.onload = async () => {
+  try {
+    const response = await fetch("/api/posts");
+    const posts = await response.json();
+    posts.forEach((post) => renderPost(post));
+  } catch (error) {
+    console.error("Error fetching posts:", error);
+  }
 };
