@@ -3,6 +3,7 @@
 <head>
     <title>Banterbird</title>
     <script src="/static/js/app.js" defer></script>
+    <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
     <h1>Banterbird</h1>
@@ -17,6 +18,18 @@
     <hr>
     <h3>Feed</h3>
     <div id="feed"></div>
+
+    <div class="container">
+        <div id="tweet-box">
+            <textarea placeholder="What's happening?"></textarea>
+            <button>Tweet</button>
+        </div>
+        <div id="feed">
+            <div class="post">This is a post!</div>
+            <!-- more posts -->
+        </div>
+    </div>
+    
 
     <template id="post-template">
         <div class="post">
